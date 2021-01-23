@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useSelector } from "react-redux"
+import Nav from "./components/Nav"
+import Form from "./components/Form"
+import MessageList from "./components/MessageList"
+
+import "./App.css"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const isLightTheme = useSelector((state) => state.isLightTheme)
+
+	return (
+		<div
+			className="App"
+			style={{
+				backgroundColor: isLightTheme ? "white" : "#282c34",
+				color: isLightTheme ? "#282c34" : "white",
+			}}
+		>
+			<Nav />
+
+			<div className="container">
+				<MessageList />
+				<Form />
+			</div>
+		</div>
+	)
 }
 
-export default App;
+export default App

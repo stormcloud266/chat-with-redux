@@ -1,38 +1,77 @@
 .App {
-  text-align: center;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 16px;
+	color: white;
+	padding: 0 0 40px 0;
+	line-height: 1.5;
+}
+.container {
+	display: flex;
+	flex-direction: column;
+	max-width: 640px;
+	width: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.message-list {
+	flex-grow: 1;
+	margin-bottom: 20px;
+	padding: 0 20px;
+	overflow: scroll;
+	height: 80vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form {
+	padding: 0 20px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.input {
+	background-color: #1d1f24;
+	border: none;
+	outline: none;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	width: 100%;
+	padding: 12px 20px;
+	line-height: 1;
 }
 
-.App-link {
-  color: #61dafb;
+.message {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 16px;
+	background-color: #222429;
+	border-radius: 6px;
+	overflow: hidden;
+}
+.message-text {
+	padding: 12px;
+}
+.message-text h4 {
+	color: #f381b8;
+	margin-bottom: 8px;
+}
+.message-text p {
+	color: #a6afc5;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.message-button {
+	background-color: #222429;
+	border: none;
+	outline: none;
+	padding: 20px;
+	color: #e66489;
+	cursor: pointer;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.3s;
+	border-left: 1px solid #626b81;
+}
+.message:hover .message-button {
+	visibility: visible;
+	opacity: 1;
 }
