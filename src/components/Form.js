@@ -1,28 +1,30 @@
-import { useState } from "react"
-import { useDispatch } from "react-redux"
-import { v4 as uuid } from "uuid"
-import { addMessage } from "../actions/message"
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addMessage } from '../actions/message'
 
 const Form = () => {
 	const dispatch = useDispatch()
-	const [message, setMessage] = useState("")
+	const [message, setMessage] = useState('')
 
 	const handleOnSubmit = (e) => {
 		e.preventDefault()
-		const data = {
-			id: uuid(),
-			content: message,
-			user: "Test User",
+
+		if (message.trim().length > 0) {
+			dispatch(
+				addMessage({
+					content: message,
+					user: 'Test User',
+				})
+			)
+			setMessage('')
 		}
-		dispatch(addMessage(data))
-		setMessage("")
 	}
 
 	return (
-		<form onSubmit={handleOnSubmit} className="form">
+		<form onSubmit={handleOnSubmit} className='form'>
 			<input
-				type="text"
-				className="input"
+				type='text'
+				className='input'
 				onChange={(el) => setMessage(el.target.value)}
 				value={message}
 			/>
