@@ -24,6 +24,7 @@ const Form = () => {
 		<form onSubmit={handleOnSubmit} className='form'>
 			<input
 				type='text'
+				placeholder='Message'
 				className='input'
 				onChange={(el) => setMessage(el.target.value)}
 				value={message}

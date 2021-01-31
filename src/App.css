@@ -6,8 +6,12 @@
 	justify-content: space-between;
 	font-size: 16px;
 	color: white;
-	padding: 0 0 40px 0;
+	padding: 20px 0;
 	line-height: 1.5;
+
+	border: 5px solid;
+	border-image-source: linear-gradient(45deg, #f381b8, #f3de81);
+	border-image-slice: 1;
 }
 .container {
 	display: flex;
@@ -18,14 +22,25 @@
 
 .message-list {
 	flex-grow: 1;
-	margin-bottom: 20px;
-	padding: 0 20px;
+	margin-bottom: 10px;
+	padding: 0 10px;
 	overflow: scroll;
 	height: 80vh;
 }
 
 .form {
-	padding: 0 20px;
+	padding: 0 10px;
+}
+
+.input::-webkit-input-placeholder {
+	color: #a6afc5;
+}
+::-moz-placeholder {
+	color: #a6afc5;
+}
+
+:-moz-placeholder {
+	color: #a6afc5;
 }
 
 .input {
@@ -38,6 +53,7 @@
 	width: 100%;
 	padding: 12px 20px;
 	line-height: 1;
+	border-radius: 6px;
 }
 
 .message {
