@@ -6,6 +6,15 @@ export const messagesReducer = (state = [], action) => {
 			return state.filter((message) => message.id !== action.id)
 		case 'SET_MESSAGES':
 			return action.messages
+		case 'EDIT_MESSAGE':
+			return state.map((message) => {
+				console.log(message)
+				if (message.id === action.id) {
+					return { ...message, ...action.updates }
+				} else {
+					return message
+				}
+			})
 		default:
 			return state
 	}

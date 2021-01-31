@@ -61,3 +61,20 @@ export const startSetMessages = () => {
 			})
 	}
 }
+
+export const editMessage = (id, updates) => ({
+	type: 'EDIT_MESSAGE',
+	id,
+	updates,
+})
+
+export const startEditMessage = (id, updates) => {
+	return (dispatch) => {
+		return database
+			.ref(`messages/${id}`)
+			.update(updates)
+			.then(() => {
+				dispatch(editMessage(id, updates))
+			})
+	}
+}

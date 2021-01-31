@@ -50,28 +50,81 @@
 }
 .message-text {
 	padding: 12px;
+	display: block;
+	flex: 1;
 }
 .message-text h4 {
 	color: #f381b8;
-	margin-bottom: 8px;
+	margin-bottom: 4px;
 }
 .message-text p {
 	color: #a6afc5;
+	padding: 4px 0;
 }
 
-.message-button {
-	background-color: #222429;
-	border: none;
-	outline: none;
-	padding: 20px;
-	color: #e66489;
-	cursor: pointer;
+.message-buttons {
+	display: flex;
+	flex-direction: column;
 	visibility: hidden;
 	opacity: 0;
 	transition: all 0.3s;
-	border-left: 1px solid #626b81;
 }
-.message:hover .message-button {
+
+.message-button {
+	flex: 1;
+	border: none;
+	outline: none;
+	padding: 10px;
+	cursor: pointer;
+	background-color: transparent;
+	border-left: 1px solid #3f4550;
+}
+
+.message-button--edit:hover svg {
+	stroke: #5b88e2;
+}
+
+.message-button--delete:hover svg {
+	stroke: #ff4c7f;
+}
+
+.message-button svg {
+	transition: stroke 0.3s;
+}
+
+.message-button--edit {
+	border-bottom: 1px solid #3f4550;
+}
+
+.message-button--edit svg {
+	stroke: #909fbd;
+}
+
+.message-button--delete svg {
+	stroke: #f18ba8;
+}
+
+.message-button svg {
+	display: block;
+}
+
+.message:hover .message-buttons {
 	visibility: visible;
 	opacity: 1;
+}
+
+.edit-input {
+	background-color: #3f4550;
+	outline: none;
+	border: none;
+	display: block;
+	width: 100%;
+
+	font-size: inherit;
+	font-family: inherit;
+	line-height: inherit;
+	letter-spacing: inherit;
+	color: #c2c9db;
+	padding: 4px;
+	transform: translateX(-4px);
 }
