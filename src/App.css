@@ -50,13 +50,16 @@
 }
 .message-text {
 	padding: 12px;
+	display: block;
 }
 .message-text h4 {
 	color: #f381b8;
-	margin-bottom: 8px;
+	margin-bottom: 4px;
 }
-.message-text p {
+.message-text p,
+.edit-input {
 	color: #a6afc5;
+	padding: 4px 0;
 }
 
 .message-button {
@@ -74,4 +77,20 @@
 .message:hover .message-button {
 	visibility: visible;
 	opacity: 1;
+}
+
+.edit-input {
+	background-color: #282c34;
+	outline: none;
+	border: none;
+	display: block;
+
+	color: inherit;
+	font-size: inherit;
+	font-family: inherit;
+	line-height: inherit;
+	letter-spacing: inherit;
+	color: #a6afc5;
+	padding: 4px;
+	transform: translateX(-4px);
 }
