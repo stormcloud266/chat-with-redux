@@ -8,14 +8,18 @@ const Message = ({ content, user, id }) => {
 	const [message, setMessage] = useState(content)
 	const [editedMessage, setEditedMessage] = useState(message)
 
+	const exitEdit = useCallback(() => {
+		setCanEdit(false)
+		setEditedMessage(message)
+	}, [message])
+
 	const handleEscape = useCallback(
 		(e) => {
 			if (e.key === 'Escape') {
-				setCanEdit(false)
-				setEditedMessage(message)
+				exitEdit()
 			}
 		},
-		[message]
+		[exitEdit]
 	)
 
 	const handleKeypress = (e) => {
@@ -49,6 +53,8 @@ const Message = ({ content, user, id }) => {
 						value={editedMessage}
 						onChange={(e) => setEditedMessage(e.target.value)}
 						onKeyPress={handleKeypress}
+						onBlur={exitEdit}
+						autoFocus
 					/>
 				) : (
 					<p>{message}</p>
