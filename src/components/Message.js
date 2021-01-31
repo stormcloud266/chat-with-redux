@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
+import ReactTooltip from 'react-tooltip'
 import { startDeleteMessage, startEditMessage } from '../actions/message'
+import { DeleteIcon, EditIcon } from '../assets/icons'
 
 const Message = ({ content, user, id }) => {
 	const dispatch = useDispatch()
@@ -61,16 +63,44 @@ const Message = ({ content, user, id }) => {
 				)}
 			</div>
 
-			<button className='message-button' onClick={() => setCanEdit(true)}>
-				edit
-			</button>
+			<div className='message-buttons'>
+				<button
+					className='message-button message-button--edit'
+					onClick={() => setCanEdit(true)}
+					data-tip
+					data-for='edit'
+				>
+					<EditIcon />
+				</button>
 
-			<button
-				className='message-button'
-				onClick={() => dispatch(startDeleteMessage(id))}
-			>
-				X
-			</button>
+				<ReactTooltip
+					delayShow={700}
+					id='edit'
+					place='top'
+					effect='solid'
+					type='info'
+				>
+					Edit
+				</ReactTooltip>
+
+				<button
+					className='message-button message-button--delete'
+					onClick={() => dispatch(startDeleteMessage(id))}
+					data-tip
+					data-for='delete'
+				>
+					<DeleteIcon />
+				</button>
+				<ReactTooltip
+					delayShow={700}
+					id='delete'
+					place='top'
+					effect='solid'
+					type='info'
+				>
+					Delete
+				</ReactTooltip>
+			</div>
 		</div>
 	)
 }
