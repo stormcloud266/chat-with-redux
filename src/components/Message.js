@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { deleteMessage } from '../actions/message'
+import { startDeleteMessage } from '../actions/message'
 
 const Message = ({ content, user, id }) => {
 	const dispatch = useDispatch()
@@ -13,7 +13,7 @@ const Message = ({ content, user, id }) => {
 
 			<button
 				className='message-button'
-				onClick={() => dispatch(deleteMessage(id))}
+				onClick={() => dispatch(startDeleteMessage(id))}
 			>
 				X
 			</button>

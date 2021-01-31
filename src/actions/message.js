@@ -29,6 +29,15 @@ export const deleteMessage = (id) => ({
 	id,
 })
 
+export const startDeleteMessage = (id) => {
+	return (dispatch) => {
+		return database
+			.ref(`messages/${id}`)
+			.remove()
+			.then(() => dispatch(deleteMessage(id)))
+	}
+}
+
 export const setMessages = (messages) => ({
 	type: 'SET_MESSAGES',
 	messages,
@@ -52,17 +61,3 @@ export const startSetMessages = () => {
 			})
 	}
 }
-
-// export const startDeleteMessage = (id) => {
-// 	return (dispatch) => {
-
-// 		return database
-// 			.ref('messages')
-// 			.push(message)
-// 			.then((ref) =>
-// 				dispatch(
-// 					deleteMessage(id)
-// 				)
-// 			)
-// 	}
-// }
