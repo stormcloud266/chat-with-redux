@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addMessage } from '../actions/message'
+import { startAddMessage } from '../actions/message'
 
 const Form = () => {
 	const dispatch = useDispatch()
@@ -11,7 +11,7 @@ const Form = () => {
 
 		if (message.trim().length > 0) {
 			dispatch(
-				addMessage({
+				startAddMessage({
 					content: message,
 					user: 'Test User',
 				})
