@@ -1,13 +1,15 @@
-import { v4 as uuid } from 'uuid'
+import { database } from '../firebase/firebase'
 
-export const addMessage = ({ content = '', user = '' } = {}) => ({
+export const addMessage = (message) => ({
 	type: 'ADD_MESSAGE',
-	message: {
-		id: uuid(),
-		content,
-		user,
-	},
+	message,
 })
+
+export const startAddMessage = (message = {}) => {
+	return (dispatch) => {
+		const { content, user } = message
+	}
+}
 
 export const deleteMessage = (id) => ({
 	type: 'DELETE_MESSAGE',
