@@ -11,7 +11,7 @@ export const startAddMessage = (data = {}) => {
 		const message = { content, user }
 
 		return database
-			.ref('messages')
+			.ref('chat/messages')
 			.push(message)
 			.then((ref) =>
 				dispatch(
@@ -32,7 +32,7 @@ export const deleteMessage = (id) => ({
 export const startDeleteMessage = (id) => {
 	return (dispatch) => {
 		return database
-			.ref(`messages/${id}`)
+			.ref(`chat/messages/${id}`)
 			.remove()
 			.then(() => dispatch(deleteMessage(id)))
 	}
@@ -46,7 +46,7 @@ export const setMessages = (messages) => ({
 export const startSetMessages = () => {
 	return (dispatch) => {
 		return database
-			.ref('messages')
+			.ref('chat/messages')
 			.once('value')
 			.then((snapshot) => {
 				const messages = []
@@ -71,7 +71,7 @@ export const editMessage = (id, updates) => ({
 export const startEditMessage = (id, updates) => {
 	return (dispatch) => {
 		return database
-			.ref(`messages/${id}`)
+			.ref(`chat/messages/${id}`)
 			.update(updates)
 			.then(() => {
 				dispatch(editMessage(id, updates))

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import App from './App'
+import AppRouter from './routers/AppRouter'
 import { configureStore } from './store/configureStore'
 import { startSetMessages } from './actions/message'
 
@@ -13,7 +13,7 @@ const store = configureStore()
 const root = (
 	<Provider store={store}>
 		<React.StrictMode>
-			<App />
+			<AppRouter />
 		</React.StrictMode>
 	</Provider>
 )
