@@ -6,9 +6,10 @@ export const addMessage = (message) => ({
 })
 
 export const startAddMessage = (data = {}) => {
-	return (dispatch) => {
+	return (dispatch, getState) => {
 		const { content = '', user = '' } = data
-		const message = { content, user }
+		const authorID = getState().auth.uid
+		const message = { content, user, authorID }
 
 		return database
 			.ref('chat/messages')

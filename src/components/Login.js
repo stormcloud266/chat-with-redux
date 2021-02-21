@@ -1,7 +1,12 @@
+import { useDispatch } from 'react-redux'
+import { startLogin } from '../actions/auth'
+
 const Login = () => {
+	const dispatch = useDispatch()
+
 	return (
 		<div>
-			<button>Sign In</button>
+			<button onClick={() => dispatch(startLogin())}>Sign In</button>
 		</div>
 	)
 }

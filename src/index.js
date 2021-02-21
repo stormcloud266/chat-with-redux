@@ -1,16 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import AppRouter from './routers/AppRouter'
+import AppRouter, { history } from './routers/AppRouter'
 import { configureStore } from './store/configureStore'
 import { startSetMessages } from './actions/message'
+import { login, logout } from './actions/auth'
+import { firebase } from './firebase/firebase'
 
 import './firebase/firebase'
 import './index.css'
 
 const store = configureStore()
 
-const root = (
+const app = (
 	<Provider store={store}>
 		<React.StrictMode>
 			<AppRouter />
@@ -18,8 +20,29 @@ const root = (
 	</Provider>
 )
 
-ReactDOM.render(<p>loading...</p>, document.getElementById('root'))
+let hasRendered = false
 
-store.dispatch(startSetMessages()).then(() => {
-	ReactDOM.render(root, document.getElementById('root'))
+const renderApp = () => {
+	if (!hasRendered) {
+		ReactDOM.render(app, document.getElementById('root'))
+		hasRendered = true
+	}
+}
+
+// ReactDOM.render(<p>loading...</p>, document.getElementById('root'))
+
+firebase.auth().onAuthStateChanged((user) => {
+	if (user) {
+		store.dispatch(login(user.uid))
+		store.dispatch(startSetMessages()).then(() => {
+			renderApp()
+		})
+		if (history.location.pathname === '/') {
+			history.push('/chat')
+		}
+	} else {
+		store.dispatch(logout())
+		renderApp()
+		history.push('/')
+	}
 })
