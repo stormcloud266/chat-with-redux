@@ -28,34 +28,6 @@
 	height: 80vh;
 }
 
-.form {
-	padding: 0 10px;
-}
-
-.input::-webkit-input-placeholder {
-	color: #a6afc5;
-}
-::-moz-placeholder {
-	color: #a6afc5;
-}
-
-:-moz-placeholder {
-	color: #a6afc5;
-}
-
-.input {
-	background-color: #1d1f24;
-	border: none;
-	outline: none;
-	color: inherit;
-	font-family: inherit;
-	font-size: inherit;
-	width: 100%;
-	padding: 12px 20px;
-	line-height: 1;
-	border-radius: 6px;
-}
-
 .message {
 	display: flex;
 	justify-content: space-between;

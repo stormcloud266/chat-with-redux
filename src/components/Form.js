@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { startAddMessage } from '../actions/message'
+import styles from '../styles/form.module.scss'
 
 const Form = () => {
 	const dispatch = useDispatch()
@@ -22,11 +23,11 @@ const Form = () => {
 	}
 
 	return (
-		<form onSubmit={handleOnSubmit} className='form'>
+		<form onSubmit={handleOnSubmit} className={styles.form}>
 			<input
 				type='text'
 				placeholder='Message'
-				className='input'
+				className={styles.input}
 				onChange={(el) => setMessage(el.target.value)}
 				value={message}
 			/>
