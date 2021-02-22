@@ -1,14 +1,15 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import ReactTooltip from 'react-tooltip'
 import { startDeleteMessage, startEditMessage } from '../actions/message'
 import { DeleteIcon, EditIcon } from '../assets/icons'
 
-const Message = ({ content, user, id }) => {
+const Message = ({ content, username, id, authorID }) => {
 	const dispatch = useDispatch()
 	const [canEdit, setCanEdit] = useState(false)
 	const [message, setMessage] = useState(content)
 	const [editedMessage, setEditedMessage] = useState(message)
+	const userID = useSelector((state) => state.auth.uid)
 
 	const exitEdit = useCallback(() => {
 		setCanEdit(false)
@@ -31,7 +32,7 @@ const Message = ({ content, user, id }) => {
 
 			dispatch(
 				startEditMessage(id, {
-					user,
+					user: username,
 					content: editedMessage,
 				})
 			)
@@ -47,7 +48,7 @@ const Message = ({ content, user, id }) => {
 	return (
 		<div className='message'>
 			<div className='message-text'>
-				<h4>{user}</h4>
+				<h4>{username}</h4>
 				{canEdit ? (
 					<input
 						type='text'
@@ -63,44 +64,46 @@ const Message = ({ content, user, id }) => {
 				)}
 			</div>
 
-			<div className='message-buttons'>
-				<button
-					className='message-button message-button--edit'
-					onClick={() => setCanEdit(true)}
-					data-tip
-					data-for='edit'
-				>
-					<EditIcon />
-				</button>
+			{userID === authorID && (
+				<div className='message-buttons'>
+					<button
+						className='message-button message-button--edit'
+						onClick={() => setCanEdit(true)}
+						data-tip
+						data-for='edit'
+					>
+						<EditIcon />
+					</button>
 
-				<ReactTooltip
-					delayShow={700}
-					id='edit'
-					place='top'
-					effect='solid'
-					type='info'
-				>
-					Edit
-				</ReactTooltip>
+					<ReactTooltip
+						delayShow={700}
+						id='edit'
+						place='top'
+						effect='solid'
+						type='info'
+					>
+						Edit
+					</ReactTooltip>
 
-				<button
-					className='message-button message-button--delete'
-					onClick={() => dispatch(startDeleteMessage(id))}
-					data-tip
-					data-for='delete'
-				>
-					<DeleteIcon />
-				</button>
-				<ReactTooltip
-					delayShow={700}
-					id='delete'
-					place='top'
-					effect='solid'
-					type='info'
-				>
-					Delete
-				</ReactTooltip>
-			</div>
+					<button
+						className='message-button message-button--delete'
+						onClick={() => dispatch(startDeleteMessage(id))}
+						data-tip
+						data-for='delete'
+					>
+						<DeleteIcon />
+					</button>
+					<ReactTooltip
+						delayShow={700}
+						id='delete'
+						place='top'
+						effect='solid'
+						type='info'
+					>
+						Delete
+					</ReactTooltip>
+				</div>
+			)}
 		</div>
 	)
 }

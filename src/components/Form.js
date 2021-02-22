@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { startAddMessage } from '../actions/message'
 
 const Form = () => {
 	const dispatch = useDispatch()
 	const [message, setMessage] = useState('')
+	const username = useSelector((state) => state.user.username)
 
 	const handleOnSubmit = (e) => {
 		e.preventDefault()
@@ -13,7 +14,7 @@ const Form = () => {
 			dispatch(
 				startAddMessage({
 					content: message,
-					user: 'Test User',
+					username,
 				})
 			)
 			setMessage('')

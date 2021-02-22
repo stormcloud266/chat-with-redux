@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import AppRouter, { history } from './routers/AppRouter'
 import { configureStore } from './store/configureStore'
 import { startSetMessages } from './actions/message'
+import { startGetUser } from './actions/user'
 import { login, logout } from './actions/auth'
 import { firebase } from './firebase/firebase'
 
@@ -34,6 +35,7 @@ const renderApp = () => {
 firebase.auth().onAuthStateChanged((user) => {
 	if (user) {
 		store.dispatch(login(user.uid))
+		store.dispatch(startGetUser(user.uid))
 		store.dispatch(startSetMessages()).then(() => {
 			renderApp()
 		})

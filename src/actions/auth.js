@@ -6,24 +6,18 @@ export const login = (uid) => ({
 })
 
 export const startLogin = () => {
-	return () => {
+	return (dispatch) => {
 		return firebase
 			.auth()
 			.signInWithPopup(googleAuthProvider)
 			.then(({ user }) => {
-				console.log(user)
+				const userRecord = database.ref(`chat/users/${user.uid}`)
 
-				const data = {
-					authorID: user.uid,
-					username: user.displayName,
-				}
-
-				// return database.ref('chat/users').push(data)
-				/*
-          check if user already exists
-          if it does get data (create action for this)
-          else create new user
-        */
+				return userRecord.once('value').then((snapshot) => {
+					if (!snapshot.exists()) {
+						userRecord.set({ username: user.displayName })
+					}
+				})
 			})
 	}
 }

@@ -17,4 +17,11 @@ const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 
 const database = firebase.database()
 
+database
+	.ref(`chat/users/mSaKBncjclhuzxiKGWX8YhFm4B93`)
+	.once('value')
+	.then((snapshot) => {
+		console.log(snapshot.exists())
+	})
+
 export { firebase, database, googleAuthProvider }
